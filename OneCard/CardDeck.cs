@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-    class CardDeck 
+    partial class CardDeck 
     {
         List<Card> cards;
 

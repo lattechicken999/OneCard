@@ -10,6 +10,13 @@ namespace OneCard
     {
         static void Main(string[] args)
         {
+            MenuManager menuManager = new MenuManager();
+            bool isPlaying = true;
+            while(isPlaying)
+            {
+                menuManager.DisplayMainMenu();
+                isPlaying = menuManager.UserCommand();
+            }
         }
     }
 }

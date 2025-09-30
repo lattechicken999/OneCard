@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OneCard
 {
 
-    class MainMenu
+    class MenuManager
     {
         public void DisplayMainMenu()
         {
@@ -21,10 +21,10 @@ namespace OneCard
 
             switch (userKey.Key)
             {
-                case ConsoleKey.NumPad1:
+                case ConsoleKey.D1:
                     StartPlayGame();
                     break;
-                case ConsoleKey.NumPad2:
+                case ConsoleKey.D2:
                     return StopPlayGame();
                 default:
                     Console.WriteLine("잘못 입력했습니다.");

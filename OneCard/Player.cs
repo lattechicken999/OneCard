@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-    internal class Player
+    partial class Player
     {
+        List<Card> cards;
+
+        public void MyTurn(Card lastCard)
+        {
+
+        }
+
     }
 }

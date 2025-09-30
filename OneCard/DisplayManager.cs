@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-    internal class DisplayManager
+    class DisplayManager
     {
     }
 }

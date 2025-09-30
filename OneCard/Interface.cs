@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace OneCard
 {
 
-    interface ICard
-    {
-        CardPattern Pattern { get; set; }
-        CardNum Num { get; set; }
-    }
+    //interface ICard
+    //{
+    //    CardPattern Pattern { get; set; }
+    //    CardNum Num { get; set; }
+    //}
 }

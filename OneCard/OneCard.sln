@@ -5,6 +5,30 @@ VisualStudioVersion = 17.14.36414.22 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneCard", "OneCard.csproj", "{004F2ACF-B7A2-4BA4-99CF-FC8CB53078B7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Card", "Card", "{C8D5274F-AC00-46C7-1F8D-E88E81087A52}"
+	ProjectSection(SolutionItems) = preProject
+		Card.cs = Card.cs
+		CardDeck.cs = CardDeck.cs
+		UsedCards.cs = UsedCards.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Player", "Player", "{A375CCDE-B1B6-4992-A559-83F71D74BABB}"
+	ProjectSection(SolutionItems) = preProject
+		Player.cs = Player.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enum", "Enum", "{7902220C-82BA-42D8-9135-EA8ADD88893C}"
+	ProjectSection(SolutionItems) = preProject
+		Enums.cs = Enums.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{C9339435-85F4-410E-90D2-CB34C75DF8BB}"
+	ProjectSection(SolutionItems) = preProject
+		DisplayManager.cs = DisplayManager.cs
+		MenuManager.cs = MenuManager.cs
+		PlayManager.cs = PlayManager.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
