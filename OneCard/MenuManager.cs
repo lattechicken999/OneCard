@@ -34,6 +34,9 @@ namespace OneCard
         }
         private void StartPlayGame()
         {
+            PlayManager playManager = new PlayManager();
+
+            playManager.GameTest();
 
         }
         private bool StopPlayGame() 

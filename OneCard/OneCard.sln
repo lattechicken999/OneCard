@@ -29,6 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{C933
 		PlayManager.cs = PlayManager.cs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{D6A260DD-7438-4547-ADA1-49B37A9602CB}"
+	ProjectSection(SolutionItems) = preProject
+		CardACIIArt.cs = CardACIIArt.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="CardACIIArt.cs" />
     <Compile Include="CardDeck.cs" />
     <Compile Include="DisplayManager.cs" />
     <Compile Include="Enums.cs" />
