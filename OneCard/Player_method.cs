@@ -9,20 +9,49 @@ namespace OneCard
 {
     partial class Player
     {
-        //내 턴에 수행할 기능
-        //1. 내 패에 낼 수 있는 카드 확인
-        //2. 있다면 사용 가능한 카드 강조
-        //3. 엔터는 카드 내기
-        //4. esc는 카드 뽑기
-        public override void MyTurn()
+
+        /// <summary>
+        /// 턴 수행 기능
+        /// 1. 공격을 받았는지 확인
+        /// 2. 그 상황에 맞게 낼 수 있는 카드 확이ㅣㄴ
+        /// 3. Display 출력
+        /// 4. 사용자 입력 대기
+        /// </summary>
+        /// <returns></returns>
+        public override bool MyTurn()
         {
-            //카드 목록 디스플레이
-            //DisplayManager 필요
-            List<int> enableCardIndex = GetEnableCardList();
+            List<int> enableCardIndex;
+            bool attFlag = IsAttackTurn();
+            if (attFlag)
+            {
+                enableCardIndex = GetAttactedEnableCardList();
+            }
+            else
+            {
+                enableCardIndex = GetEnableCardList();
+            }
             PlayingDisplay.SetEnableCardIndex(enableCardIndex);
             PlayingDisplay.DisplayPlaying(cards);
             int selectedCardIndex;
-            UserSelect(enableCardIndex,out selectedCardIndex);
+
+            if (DrawOrUseCard(enableCardIndex,out selectedCardIndex))
+            {
+                if (attFlag)
+                {
+                    ApplyAttackCard();
+                }
+                else
+                {
+                    NormalDrawCard();
+                }
+                return false;
+            }
+            else
+            {
+                lastCard = cards[selectedCardIndex];
+                cards.RemoveAt(selectedCardIndex);
+                return true;
+            }
 
         }
 
@@ -32,7 +61,7 @@ namespace OneCard
         /// <param name="enableCardIndex">사용 가능한 카드 인덱스 모음</param>
         /// <param name="selectedCardIndex">선택된 카드 인덱스 (카드 뽑기 시 -1)</param>
         /// <returns>true면 카드 뽑기, false면 카드 내기</returns>
-        private bool UserSelect(List<int> enableCardIndex, out int selectedCardIndex)
+        protected override bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex)
         {
             int selectIndex = 0;
             bool isSelection = true;
@@ -42,7 +71,15 @@ namespace OneCard
             while (isSelection)
             {
                 //카드 선택창 출력
-                PlayingDisplay.DisplayUserSelection(cards.Count, enableCardIndex[selectIndex]);
+                if(enableCardIndex.Count>0)
+                {
+                    PlayingDisplay.DisplayUserSelection(cards.Count, enableCardIndex[selectIndex]);
+                }
+                else
+                {
+                    //선택할 것이 없을 때.
+                    PlayingDisplay.DisplayUserSelection(cards.Count);
+                }
                 var inputKey = Console.ReadKey(true);
 
                 switch (inputKey.Key)
@@ -55,6 +92,11 @@ namespace OneCard
                         selectIndex = (selectIndex < enableCardIndex.Count-1)? selectIndex + 1 : selectIndex;
                         break;
                     case ConsoleKey.Enter:
+                        if(enableCardIndex.Count == 0)
+                        {
+                            //선택할게 없으면 무시함ㅇ
+                            break;
+                        }
                         isSelection = false;
                         selectedCardIndex = enableCardIndex[selectIndex];
                         break;

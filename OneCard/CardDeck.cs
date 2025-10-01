@@ -12,6 +12,9 @@ namespace OneCard
 
         public CardDeck()
         {
+            // 한장 뽑기 기능 저장
+            AbsPlayer.TakeCard += Draw;
+
             cards = new List<Card>();
 
             for (int i = 0; i<52;i++)

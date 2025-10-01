@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Card", "Card", "{C8D5274F-A
 	ProjectSection(SolutionItems) = preProject
 		Card.cs = Card.cs
 		CardDeck.cs = CardDeck.cs
+		CardDeck_DrawMethod.cs = CardDeck_DrawMethod.cs
 		UsedCards.cs = UsedCards.cs
 	EndProjectSection
 EndProject

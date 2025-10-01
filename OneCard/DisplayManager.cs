@@ -38,17 +38,17 @@ namespace OneCard
 
             //카트 목록 출력 위치 설정
             DispSelectH = Console.WindowHeight - Console.WindowHeight/10;
-            DispSelectW = (Console.WindowWidth -(userCards.Count * 3))/2;
-            int DispCardW = (Console.WindowWidth - (userCards.Count * 7)) / 2;
+            DispSelectW = (Console.WindowWidth -((userCards.Count/10+1) * 3))/2;
+            int DispCardW = (Console.WindowWidth - ((userCards.Count/5+1) * 10)) / 2;
             if (DispSelectW<0) { DispSelectW = 0; }
 
-            Console.SetCursorPosition(DispCardW, DispSelectH - 5);
+            Console.SetCursorPosition(DispCardW, DispSelectH - 8);
 
             for(int i=0;i<userCards.Count; i++)
             {
                 if(i%5 == 0)
                 {
-                    Console.SetCursorPosition(DispCardW, DispSelectH - 5+i/5);
+                    Console.SetCursorPosition(DispCardW, DispSelectH - 8+i/5);
                     //5개마다 1줄 추가
                 }
                 Console.Write($"  {i}.");
@@ -63,7 +63,7 @@ namespace OneCard
         /// </summary>
         /// <param name="cardCount">카드 덱의 개 수</param>
         /// <param name="userSelectCard">선택 중인 카드의 인덱스 (사용 가능한 카드 인덱스만.. 체크 기능없음)</param>
-        public static void DisplayUserSelection(int cardCount,int userSelectCard)
+        public static void DisplayUserSelection(int cardCount,int userSelectCard = -1)
         {
 
             Console.SetCursorPosition(DispSelectW, DispSelectH);
@@ -73,8 +73,8 @@ namespace OneCard
 
                 if (i % 10 == 0)
                 {
-                    Console.SetCursorPosition(DispSelectW, DispSelectH + i / 5);
-                    //5개마다 1줄 추가
+                    Console.SetCursorPosition(DispSelectW, DispSelectH + i / 10);
+                    //10개마다 1줄 추가
                 }
 
                 if (userSelectCard == i)
@@ -97,7 +97,7 @@ namespace OneCard
 
         private static void DiplayGuide()
         {
-            Console.SetCursorPosition(DispSelectW,0);
+            Console.SetCursorPosition(40,0);
             Console.WriteLine("[ ← → : 낼 카드 선택    Enter : 카드 내기    Esc : 카드 드로우  ]");
         }
         //플레이어 카드 덱 디스플레이
@@ -121,7 +121,14 @@ namespace OneCard
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write("♧");
                     break;
-                    
+                case CardPattern.Black:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("☆");
+                    break;
+                case CardPattern.Color:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("★");
+                    break;
                 default:
                     return;
             }
@@ -133,14 +140,13 @@ namespace OneCard
         {
             int DispCenterH = Console.WindowHeight / 2-3;
             int DispCenterW = Console.WindowWidth / 2 -3;
-            Console.SetCursorPosition(DispCenterW, DispCenterH);
-            Console.WriteLine("       ");
-            Console.SetCursorPosition(DispCenterW, DispCenterH+1);
-            Console.Write(" ");
+            Console.SetCursorPosition(DispCenterW-2, DispCenterH);
+            Console.WriteLine("┏         ┓");
+            Console.SetCursorPosition(DispCenterW-2, DispCenterH+1);
+            Console.Write("  ");
             DisplayCard(Player.LastCard);
-            Console.WriteLine(" ");
-            Console.SetCursorPosition(DispCenterW, DispCenterH + 2);
-            Console.WriteLine("       ");
+            Console.SetCursorPosition(DispCenterW-2, DispCenterH + 2);
+            Console.WriteLine("┗         ┛");
         }
     }
 }

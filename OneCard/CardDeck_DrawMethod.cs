@@ -8,6 +8,14 @@ namespace OneCard
 {
     partial class CardDeck
     {
+        //한 장 드로우
+        public Card Draw()
+        {
+            Card returnCard = cards.Last();
+            cards.RemoveAt(cards.Count-1);
+            return returnCard;
+        }
+        //여러장 드로우
         public List<Card> Draw(int num = 1)
         {
             List<Card> returnCard = cards.GetRange(cards.Count - num - 1, num);
