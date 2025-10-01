@@ -16,11 +16,17 @@ namespace OneCard
 
             for (int i = 0; i<52;i++)
             {
-                Card newCard = new Card();
-                newCard.Pattern = (CardPattern)(i % 4 + 1);
-                newCard.Num = (CardNum)(i % 13);
-                cards.Add(newCard);
+                cards.Add( new Card( (CardPattern)(i % 4 + 1), (CardNum)(i % 13) ) );
             }
+
+            //흑백 조커 추가
+            Card newBlackJocker = new Card(CardPattern.Black, CardNum._Jocker);
+            cards.Add(newBlackJocker);
+
+            //컬러 조커 추가
+            Card newCard = new Card(CardPattern.Color, CardNum._Jocker);
+            cards.Add(newCard);
+
             SuffleDeck();
         }
 
@@ -36,11 +42,5 @@ namespace OneCard
             }
         }
 
-        public List<Card> Draw(int num = 1)
-        {
-            List<Card> returnCard = cards.GetRange(cards.Count - num - 1, num);
-            cards.RemoveRange(cards.Count - num - 1, num);
-            return returnCard;
-        }
     }
 }
