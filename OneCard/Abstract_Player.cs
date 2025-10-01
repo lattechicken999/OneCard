@@ -24,7 +24,7 @@ namespace OneCard
         /// </summary>
         /// <returns>true 시 카드를 냄. false 시 카드를 먹음</returns>
         public abstract bool MyTurn();
-        protected abstract bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex);
+        //protected abstract bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex);
 
     }
 }

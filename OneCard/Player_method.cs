@@ -61,7 +61,7 @@ namespace OneCard
         /// <param name="enableCardIndex">사용 가능한 카드 인덱스 모음</param>
         /// <param name="selectedCardIndex">선택된 카드 인덱스 (카드 뽑기 시 -1)</param>
         /// <returns>true면 카드 뽑기, false면 카드 내기</returns>
-        protected override bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex)
+        private bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex)
         {
             int selectIndex = 0;
             bool isSelection = true;
