@@ -21,6 +21,17 @@ namespace OneCard
                 cards.RemoveAt(useCardIndex);
             }
         }
+        /// <summary>
+        /// 카드 사용시 호출 메서드
+        /// Auto 용
+        /// </summary>
+        /// <param name="useCardIndex"></param>
+        /// <param name="enableCards"></param>
+        protected void UseCard(Card usingCard)
+        {
+            lastCard = usingCard;
+            cards.Remove(usingCard);
+        }
 
         /// <summary>
         /// 보통 상황에서 사용가능한 카드 체크
