@@ -10,5 +10,14 @@ namespace OneCard
     {
         public CardPattern Pattern { get ; set;}
         public CardNum Num { get ; set; }
+        public Card()
+        {
+            
+        }
+        public Card(CardPattern patten, CardNum num)
+        {
+            Pattern = patten;
+            Num = num;
+        }
     }
 }
