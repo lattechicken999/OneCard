@@ -8,6 +8,10 @@ namespace OneCard
 {
     static class PlayingDisplay
     {
+        static int DispSelectH;
+        static int DispSelectW;
+        //static int DispCardW; //굳이 여기 있을 필요 없음
+
         static List<int> enableIndexs = new List<int>();
         public static void SetEnableCardIndex(List<int> cardIndex)
         {
@@ -25,15 +29,16 @@ namespace OneCard
         }
 
         //플레이 화면 출력
-        public static void DisplayUserPlay(List<Card> userCards)
+        public static void DisplayPlaying(List<Card> userCards)
         {
             Console.Clear();
             Console.WriteLine(CardArt.backGround);
+            DiplayGuide();
             DisplayLastCard();
 
             //카트 목록 출력 위치 설정
-            int DispSelectH = Console.WindowHeight - Console.WindowHeight/10;
-            int DispSelectW = (Console.WindowWidth -(userCards.Count * 3))/2;
+            DispSelectH = Console.WindowHeight - Console.WindowHeight/10;
+            DispSelectW = (Console.WindowWidth -(userCards.Count * 3))/2;
             int DispCardW = (Console.WindowWidth - (userCards.Count * 7)) / 2;
             if (DispSelectW<0) { DispSelectW = 0; }
 
@@ -50,31 +55,51 @@ namespace OneCard
                 DisplayCard(userCards[i]);
             }
 
+            
+        }
+
+        /// <summary>
+        /// 카드 선택 창 출력
+        /// </summary>
+        /// <param name="cardCount">카드 덱의 개 수</param>
+        /// <param name="userSelectCard">선택 중인 카드의 인덱스 (사용 가능한 카드 인덱스만.. 체크 기능없음)</param>
+        public static void DisplayUserSelection(int cardCount,int userSelectCard)
+        {
+
             Console.SetCursorPosition(DispSelectW, DispSelectH);
 
-            for(int i = 0; i < userCards.Count; i++) 
+            for (int i = 0; i < cardCount; i++)
             {
 
                 if (i % 10 == 0)
                 {
-                    Console.SetCursorPosition(DispSelectW, DispSelectH  + i / 5);
+                    Console.SetCursorPosition(DispSelectW, DispSelectH + i / 5);
                     //5개마다 1줄 추가
                 }
 
-                if (enableIndexs.Contains(i))
+                if (userSelectCard == i)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
+                else if (enableIndexs.Contains(i))
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
                 Console.Write($"[{i}] ");
                 Console.ResetColor();
-                
+
             }
         }
 
+        private static void DiplayGuide()
+        {
+            Console.SetCursorPosition(DispSelectW,0);
+            Console.WriteLine("[ ← → : 낼 카드 선택    Enter : 카드 내기    Esc : 카드 드로우  ]");
+        }
         //플레이어 카드 덱 디스플레이
         private static void DisplayCard(Card card)
         {
