@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace OneCard
 {
@@ -15,12 +16,12 @@ namespace OneCard
         {
             cardDeck = new CardDeck();
             players = new LinkedList<AbsPlayer>();
-            players.AddFirst(new Player(cardDeck.Draw(7))); //기본 7장 드로우
+            players.AddFirst(new Player(cardDeck.Draw(7),"Its Me")); //기본 7장 드로우
 
             AutoPlayerNum = 3;
             for(int i =0;i<AutoPlayerNum;i++)
             {
-                players.AddFirst(new AutoPlayer(cardDeck.Draw(7)));
+                players.AddFirst(new AutoPlayer(cardDeck.Draw(7),$"Auto_{i+1}"));
             }
             
         }
@@ -34,7 +35,7 @@ namespace OneCard
             return true;
         }
 
-        public void GameTest()
+        public void GamePlay()
         {
             var turn = players.Last;
             while (true)
@@ -47,7 +48,9 @@ namespace OneCard
                 {
 
                 }
+                turn.Value.DisplayRemainingCard();
                 //순환 구조용 확장 메서드
+                Thread.Sleep(2000);
                 turn = players.CycleNext(turn);
             }
         }

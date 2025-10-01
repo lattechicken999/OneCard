@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-    partial class Player
+    partial class Player:AbsPlayer
     {
 
         /// <summary>
         /// 턴 수행 기능
         /// 1. 공격을 받았는지 확인
-        /// 2. 그 상황에 맞게 낼 수 있는 카드 확이ㅣㄴ
+        /// 2. 그 상황에 맞게 낼 수 있는 카드 확인
         /// 3. Display 출력
         /// 4. 사용자 입력 대기
         /// </summary>
@@ -48,8 +48,7 @@ namespace OneCard
             }
             else
             {
-                lastCard = cards[selectedCardIndex];
-                cards.RemoveAt(selectedCardIndex);
+                UseCard(selectedCardIndex, enableCardIndex);
                 return true;
             }
 
@@ -111,5 +110,8 @@ namespace OneCard
             }
             return cardDraw;
         }
+
+
+
     }
 }

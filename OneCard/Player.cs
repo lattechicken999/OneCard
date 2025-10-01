@@ -14,11 +14,13 @@ namespace OneCard
         {
             lastCard = new Card();
             cards = new List<Card>();
+            PlayerName = "";
         }
-        public Player(List<Card> myDeck)
+        public Player(List<Card> myDeck,string name)
         {
             lastCard = new Card();
             cards = myDeck;
+            PlayerName = name;
         }
     }
 }

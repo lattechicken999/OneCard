@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Player", "Player", "{A375CCDE-B1B6-4992-A559-83F71D74BABB}"
 	ProjectSection(SolutionItems) = preProject
 		Abstract_Player.cs = Abstract_Player.cs
+		Abstract_Player_Method.cs = Abstract_Player_Method.cs
 		AutoPlayer.cs = AutoPlayer.cs
 		Player.cs = Player.cs
 		player_method.cs = player_method.cs

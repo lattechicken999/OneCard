@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract_Player.cs" />
+    <Compile Include="Abstract_Player_Method.cs" />
     <Compile Include="AutoPlayer.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardACIIArt.cs" />

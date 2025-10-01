@@ -136,6 +136,7 @@ namespace OneCard
             Console.ResetColor();
         }
 
+        //마지막 카드 출력
         private static void DisplayLastCard()
         {
             int DispCenterH = Console.WindowHeight / 2-3;
@@ -147,6 +148,18 @@ namespace OneCard
             DisplayCard(Player.LastCard);
             Console.SetCursorPosition(DispCenterW-2, DispCenterH + 2);
             Console.WriteLine("┗         ┛");
+        }
+
+        //각 턴 때 표시할 남은 카드 출력
+        public static void DisplayPlayerRemainingCard(int cardNum,string name)
+        {
+           
+            Console.SetCursorPosition(Console.WindowWidth/2 -8, 9);
+            Console.WriteLine("================================");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 10);
+            Console.WriteLine($"   {name}님의 남은 카드 개 수 : {cardNum} ");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 11);
+            Console.WriteLine("================================");
         }
     }
 }

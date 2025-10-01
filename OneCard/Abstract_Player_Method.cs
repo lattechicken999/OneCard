@@ -139,5 +139,9 @@ namespace OneCard
         {
             cards.Add(TakeCard.Invoke());
         }
+        public void DisplayRemainingCard()
+        {
+            PlayingDisplay.DisplayPlayerRemainingCard(cards.Count, PlayerName);
+        }
     }
 }

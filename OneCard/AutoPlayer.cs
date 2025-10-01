@@ -8,26 +8,61 @@ namespace OneCard
 {
     class AutoPlayer : AbsPlayer
     {
+        
+        
         public AutoPlayer()
         {
             lastCard = new Card();
             cards = new List<Card>();
+            PlayerName = "";
         }
-        public AutoPlayer(List<Card> myDeck)
+        public AutoPlayer(List<Card> myDeck,string name)
         {
             lastCard = new Card();
             cards = myDeck;
-        }
-        public override bool MyTurn()
-        {
-            Console.WriteLine("순환구조 완");
-            return false;
+            PlayerName = name;  
         }
 
-        protected override bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex)
+        /// <summary>
+        /// 오토 플레이어 턴 동작 정의
+        /// </summary>
+        /// <returns></returns>
+        public override bool MyTurn()
         {
-            selectedCardIndex = -1;
-            return false;
+            Random rnd = new Random();
+            List<int> enableCardIndex;
+            bool attFlag = IsAttackTurn();
+            if (attFlag)
+            {
+                enableCardIndex = GetAttactedEnableCardList();
+            }
+            else
+            {
+                enableCardIndex = GetEnableCardList();
+            }
+
+            if (enableCardIndex.Count > 0)
+            {
+                //선택 할 수 있는 카드가 있다면 랜덤하게 내기
+                var useCard = cards[enableCardIndex[rnd.Next(enableCardIndex.Count)]];
+                UseCard(useCard);
+                return true;
+            }
+            else
+            {
+                //선택할 수 있는 카드가 없다면 카드를 먹음
+                if (attFlag)
+                {
+
+                    ApplyAttackCard();
+
+                }
+                else
+                {
+                    NormalDrawCard();
+                }
+                return false;
+            }
         }
     }
 }
