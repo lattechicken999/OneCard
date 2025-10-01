@@ -9,8 +9,10 @@ namespace OneCard
     abstract class AbsPlayer
     {
         protected List<Card> cards;
-        //모든 플레이어 객체 공유
+        //모든 플레이어는 마지막 카드 공유
         protected static Card lastCard = new Card();
+        // 패널티 카드 공유
+        public static event Func< List<Card>> TakePenaltyCard;
         public static Card LastCard
         { get { return lastCard; } }
         public abstract void MyTurn();

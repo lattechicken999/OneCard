@@ -35,4 +35,35 @@ namespace OneCard
 
         }
     }
+
+    partial class PlayManager
+    {
+        //메서드 정의
+
+        //마지막 카드의 공격카드 판단 및 처리
+        private void CheckAttackCard()
+        {
+            Card lastCard = Player.LastCard;
+            if (lastCard.Num == CardNum._2 && lastCard.Pattern != CardPattern.None)
+            {
+                Player.TakePenaltyCard += cardDeck.Draw_Attact2;
+            }
+            else if(lastCard.Num == CardNum._A && lastCard.Pattern != CardPattern.Spade)
+            {
+                Player.TakePenaltyCard += cardDeck.Draw_AttactA;
+            }
+            else if(lastCard.Num == CardNum._A && lastCard.Pattern == CardPattern.Spade)
+            {
+                Player.TakePenaltyCard += cardDeck.Draw_AttactSpadeA;
+            }
+            else if(lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Black)
+            {
+                Player.TakePenaltyCard += cardDeck.Draw_AttactBlackJocker;
+            }
+            else if (lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Color)
+            {
+                Player.TakePenaltyCard += cardDeck.Draw_AttactColorJocker;
+            }
+        }
+    }
 }
