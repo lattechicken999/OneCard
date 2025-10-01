@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Player", "Player", "{A375CCDE-B1B6-4992-A559-83F71D74BABB}"
 	ProjectSection(SolutionItems) = preProject
 		Abstract_Player.cs = Abstract_Player.cs
+		AutoPlayer.cs = AutoPlayer.cs
 		Player.cs = Player.cs
 		player_method.cs = player_method.cs
 	EndProjectSection
@@ -36,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{D6A260
 	ProjectSection(SolutionItems) = preProject
 		CardACIIArt.cs = CardACIIArt.cs
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extension_Method", "Extension_Method", "{14D4BFD3-AA51-4ACA-A2B9-E8F52B4B4E9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

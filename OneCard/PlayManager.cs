@@ -22,6 +22,7 @@ namespace OneCard
             {
                 players.AddFirst(new AutoPlayer(cardDeck.Draw(7)));
             }
+            
         }
 
         /// <summary>
@@ -35,9 +36,10 @@ namespace OneCard
 
         public void GameTest()
         {
+            var turn = players.Last;
             while (true)
             {
-                if (players.First.Value.MyTurn())
+                if (turn.Value.MyTurn())
                 {
                     CheckAttackCard();
                 }
@@ -45,6 +47,8 @@ namespace OneCard
                 {
 
                 }
+                //순환 구조용 확장 메서드
+                turn = players.CycleNext(turn);
             }
         }
     }

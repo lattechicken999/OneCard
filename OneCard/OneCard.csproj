@@ -44,12 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract_Player.cs" />
+    <Compile Include="AutoPlayer.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardACIIArt.cs" />
     <Compile Include="CardDeck.cs" />
     <Compile Include="CardDeck_DrawMethod.cs" />
     <Compile Include="DisplayManager.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="ex_LinkedList.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="Player.cs" />

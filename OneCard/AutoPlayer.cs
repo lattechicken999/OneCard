@@ -20,12 +20,14 @@ namespace OneCard
         }
         public override bool MyTurn()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("순환구조 완");
+            return false;
         }
 
         protected override bool DrawOrUseCard(List<int> enableCardIndex, out int selectedCardIndex)
         {
-            throw new NotImplementedException();
+            selectedCardIndex = -1;
+            return false;
         }
     }
 }
