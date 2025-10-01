@@ -8,15 +8,20 @@ namespace OneCard
 {
     partial class PlayManager
     {
-        LinkedList<Player> players; //플레이어 정보
+        LinkedList<AbsPlayer> players; //플레이어 정보
         CardDeck cardDeck;
-
+        public int AutoPlayerNum { get; set; }
         public PlayManager()
         {
             cardDeck = new CardDeck();
-            players = new LinkedList<Player>();
+            players = new LinkedList<AbsPlayer>();
             players.AddFirst(new Player(cardDeck.Draw(7))); //기본 7장 드로우
-            players.AddFirst(new Player(cardDeck.Draw(7))); //기본 7장 드로우
+
+            AutoPlayerNum = 3;
+            for(int i =0;i<AutoPlayerNum;i++)
+            {
+                players.AddFirst(new AutoPlayer(cardDeck.Draw(7)));
+            }
         }
 
         /// <summary>
@@ -30,39 +35,51 @@ namespace OneCard
 
         public void GameTest()
         {
+            while (true)
+            {
+                if (players.First.Value.MyTurn())
+                {
+                    CheckAttackCard();
+                }
+                else
+                {
 
-            players.First.Value.MyTurn();
-
+                }
+            }
         }
     }
+
+
+
+
 
     partial class PlayManager
     {
         //메서드 정의
-
+        
         //마지막 카드의 공격카드 판단 및 처리
         private void CheckAttackCard()
         {
-            Card lastCard = Player.LastCard;
+            Card lastCard = AbsPlayer.LastCard;
             if (lastCard.Num == CardNum._2 && lastCard.Pattern != CardPattern.None)
             {
-                Player.TakePenaltyCard += cardDeck.Draw_Attact2;
+                AbsPlayer.TakePenaltyCard += cardDeck.Draw_Attact2;
             }
             else if(lastCard.Num == CardNum._A && lastCard.Pattern != CardPattern.Spade)
             {
-                Player.TakePenaltyCard += cardDeck.Draw_AttactA;
+                AbsPlayer.TakePenaltyCard += cardDeck.Draw_AttactA;
             }
             else if(lastCard.Num == CardNum._A && lastCard.Pattern == CardPattern.Spade)
             {
-                Player.TakePenaltyCard += cardDeck.Draw_AttactSpadeA;
+                AbsPlayer.TakePenaltyCard += cardDeck.Draw_AttactSpadeA;
             }
             else if(lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Black)
             {
-                Player.TakePenaltyCard += cardDeck.Draw_AttactBlackJocker;
+                AbsPlayer.TakePenaltyCard += cardDeck.Draw_AttactBlackJocker;
             }
             else if (lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Color)
             {
-                Player.TakePenaltyCard += cardDeck.Draw_AttactColorJocker;
+                AbsPlayer.TakePenaltyCard += cardDeck.Draw_AttactColorJocker;
             }
         }
     }
