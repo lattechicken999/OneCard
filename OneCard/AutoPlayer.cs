@@ -71,6 +71,12 @@ namespace OneCard
             }
         }
 
+        public override void SelectCardPattern()
+        {
+            Random rnd = new Random();
+            lastCard.Pattern = (CardPattern)rnd.Next((int)CardPattern.Diamond, (int)CardPattern.Spade + 1);
+        }
+
         public override void WaitEnterInput()
         {
             Random rnd = new Random();

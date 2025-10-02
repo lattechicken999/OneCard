@@ -18,7 +18,7 @@ namespace OneCard
         { set
             { cardDeck.UsedOneCard = value; }
         }
-
+        
         public int AutoPlayerNum { get; set; }
         public PlayManager()
         {
@@ -73,8 +73,7 @@ namespace OneCard
             var turn = players.Last;
             while (true)
             {
-                PlayingDisplay.DisplayBackground();
-
+                Console.Clear();
                 if(turn.Value.Status == PlayerStatus.Playing)
                 {
                     PlayingDisplay.DisplayAllPlayerRemainingCard(players);
@@ -83,7 +82,7 @@ namespace OneCard
                     if (turn.Value.MyTurn())
                     {
                         //카드를 냈을 때
-                        CheckSpecialCard();
+                        CheckSpecialCard(turn.Value);
                         turn.Value.DisplayNotice();
                     }
                     else
@@ -100,7 +99,7 @@ namespace OneCard
                         }
                     }
                     CheckPlayable(turn);
-                    //Thread.Sleep(2000);
+                    Thread.Sleep(2000);
                 }
                 if (CheckPlayableUserCount(players) == 0  )
                 {
@@ -108,8 +107,32 @@ namespace OneCard
                     PlayingDisplay.DisplayGameEnd(players);
                     break;
                 }
-                //순환 구조용 확장 메서드
-                turn = players.CycleNext(turn);
+                
+                if(specialStatus.OneMoreTurn)
+                {
+                    //턴 그대로
+                    specialStatus.OneMoreTurn = false;
+                }
+                //턴 반대인지 확인
+                else if(specialStatus.ReverseTurn)
+                {
+                    if(specialStatus.TurnSkip)
+                    {
+                        specialStatus.TurnSkip = false;
+                        turn = players.CyclePrevious(turn);
+                    }
+                    turn = players.CyclePrevious(turn);
+                }
+                else
+                {
+                    if (specialStatus.TurnSkip)
+                    {
+                        specialStatus.TurnSkip= false;
+                        turn = players.CycleNext(turn);
+                    }
+                    turn = players.CycleNext(turn);
+                }
+                
             }
 
             Console.WriteLine("게임이 종료 되었습니다.");
@@ -136,10 +159,19 @@ namespace OneCard
 
     partial class PlayManager
     {
+        // 특수 카드 처리용도
+        private struct SpecialStatus
+        {
+            public bool TurnSkip;
+            public bool ReverseTurn;
+            public bool OneMoreTurn;
+        }
+
+        SpecialStatus specialStatus;
         //메서드 정의
-        
+
         //마지막 카드의 공격카드 판단 및 처리
-        private void CheckSpecialCard()
+        private void CheckSpecialCard(BasePlayer player)
         {
             Card lastCard = BasePlayer.LastCard;
             //공격 카드일 때 처리
@@ -164,6 +196,32 @@ namespace OneCard
                 BasePlayer.TakePenaltyCard += cardDeck.Draw_AttactColorJocker;
             }
             // 특수카드 일 때 처리
+            else if (lastCard.Num == CardNum._J)
+            {
+                //점프 카드 턴을 한번 넘김
+                specialStatus.TurnSkip = true;
+            }
+            else if (lastCard.Num== CardNum._Q)
+            {
+                if(specialStatus.ReverseTurn)
+                {
+                    specialStatus.ReverseTurn = false;
+                }
+                else
+                {
+                    specialStatus.ReverseTurn = true;
+                }
+                    
+            }
+            else if(lastCard.Num == CardNum._K)
+            {
+                specialStatus.OneMoreTurn = true;
+            }
+            else if(lastCard.Num == CardNum._7)
+            {
+                player.SelectCardPattern();
+            }
+
         }
     }
 }

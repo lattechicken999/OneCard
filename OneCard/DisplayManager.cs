@@ -27,11 +27,7 @@ namespace OneCard
             }    
             return false;
         }
-        public static void DisplayBackground()
-        {
-            Console.Clear();
-            Console.WriteLine(CardArt.backGround);
-        }
+
         //플레이 화면 출력
         public static void DisplayPlaying(List<Card> userCards)
         {

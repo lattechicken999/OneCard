@@ -59,6 +59,32 @@ namespace OneCard
 
         }
 
+        public override void SelectCardPattern()
+        {
+            while (true)
+            {
+                Console.Clear();
+                PlayingDisplay.DisplayPlayerStatucNotice("7을 내셨습니다. 문양을 선택하세요. 1. ◆  2.♥ 3.♣ 4.♠");
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.D1)
+                {
+                    lastCard.Pattern = CardPattern.Diamond;
+                }
+                else if (key.Key == ConsoleKey.D2)
+                {
+                    lastCard.Pattern = CardPattern.Heart;
+                }
+                else if (key.Key == ConsoleKey.D3)
+                {
+                    lastCard.Pattern = CardPattern.Club;
+                }
+                else if (key.Key == ConsoleKey.D4)
+                {
+                    lastCard.Pattern = CardPattern.Spade;
+                }
+            }
+        }
+
         public override void WaitEnterInput()
         {
             while (true)
