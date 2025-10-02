@@ -12,7 +12,7 @@ namespace OneCard
         //카드 드로우 시 덱에 드로우 카드보다 작다면 버린 카드 더미를 가져옴
         private List<Card> RefillCard()
         {
-            return SuffleDeck(PlayManager.RefillCardList);
+            return SuffleDeck(RestUsedCard());
         }
         //한 장 드로우
         public Card Draw()

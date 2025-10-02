@@ -9,8 +9,11 @@ namespace OneCard
      abstract partial class AbsPlayer
     {
         protected List<Card> cards;
+        protected PlayerStatus status = PlayerStatus.Playing;
         public string PlayerName
         { get; set; }
+        public PlayerStatus Status 
+        { get; }
         //모든 플레이어는 마지막 카드 공유
         protected static Card lastCard = new Card();
 
@@ -24,6 +27,8 @@ namespace OneCard
         public static Card LastCard
         { get { return lastCard; } }
 
+        public int PlayerCardNum
+        { get { return cards.Count; } }
         /// <summary>
         /// 플레이어 턴 시 동작 수행
         /// </summary>

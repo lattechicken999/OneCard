@@ -8,6 +8,7 @@ namespace OneCard
 {
     abstract partial class AbsPlayer
     {
+
         /// <summary>
         /// 카드 사용시 호출 메서드
         /// </summary>
@@ -45,12 +46,12 @@ namespace OneCard
             for (int i = 0; i < cards.Count; i++)
             {
                 //마지막 카드가 비어 있다면(초기 값이라면), 혹은 조커카드라면 모든 카드 가능
-                if (lastCard.Num == CardNum._Jocker || (lastCard.Pattern == CardPattern.None && lastCard.Num == CardNum._2))
+                if (lastCard.Num == CardNum._Jocker || (lastCard.Pattern == CardPattern.None && lastCard.Num == CardNum.None))
                 {
                     enableIndex.Add(i);
                 }
                 //조커카드는 언제나 가능
-                else if (lastCard.Num == CardNum._Jocker)
+                else if (cards[i].Num == CardNum._Jocker)
                 {
                     enableIndex.Add(i);
                 }
@@ -141,9 +142,17 @@ namespace OneCard
         {
             cards.Add(TakeCard.Invoke());
         }
-        public void DisplayRemainingCard()
+        public void DisplayNotice()
         {
-            PlayingDisplay.DisplayPlayerRemainingCard(cards.Count, PlayerName);
+            PlayingDisplay.DisplayPlayerStatucNotice(cards.Count, PlayerName);
+        }
+        public void DisplayNotice(string text)
+        {
+            PlayingDisplay.DisplayPlayerStatucNotice(text);
+        }
+        public void SetStatus(PlayerStatus newStatus)
+        {
+            status = newStatus;
         }
     }
 }

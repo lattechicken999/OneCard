@@ -9,17 +9,34 @@ namespace OneCard
     partial class CardDeck 
     {
         List<Card> cards;
+        List<Card> usedCards;
+
+        public Card UsedOneCard
+        {
+            set
+            {
+                usedCards.Add(value);
+            }
+        }
+        public List<Card> UsedCardRange
+        {
+            set
+            {
+                usedCards.AddRange(value);
+            }
+        }
 
         public CardDeck()
         {
+            cards = new List<Card>();
+            usedCards = new List<Card>();
+
             // 한장 뽑기 기능 저장
             AbsPlayer.TakeCard += Draw;
 
-            cards = new List<Card>();
-
-            for (int i = 0; i<52;i++)
+            for (int i = 0; i < 52; i++)
             {
-                cards.Add( new Card( (CardPattern)(i % 4 + 1), (CardNum)(i % 13) ) );
+                cards.Add(new Card((CardPattern)(i % 4 + 1), (CardNum)(i % 13 + 1)));
             }
 
             //흑백 조커 추가
@@ -32,7 +49,6 @@ namespace OneCard
 
             SuffleDeck();
         }
-
         public void SuffleDeck()
         {
             Random rnd = new Random();
@@ -65,10 +81,15 @@ namespace OneCard
         {
             cards.AddRange(cards);
         }
-        public List<Card> EmptyCard()
+
+        /// <summary>
+        /// used Card List를 초기화 하고 삭제된 리스트 반환
+        /// </summary>
+        /// <returns>삭제된 리스트</returns>
+        public List<Card> RestUsedCard()
         {
-            List<Card> list = cards.ToList();
-            cards.Clear();
+            List<Card> list = usedCards.ToList();
+            usedCards.Clear();
             return list;
         }
     }

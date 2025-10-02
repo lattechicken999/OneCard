@@ -12,7 +12,10 @@ namespace OneCard
     }
     enum CardNum
     {
-        _2, _3, _4, _5, _6, _7, _8, _9, _10, _J, _Q, _K, _A, _Jocker
+        None,_2, _3, _4, _5, _6, _7, _8, _9, _10, _J, _Q, _K, _A, _Jocker
     }
-
+    enum PlayerStatus
+    {
+        Playing, Win_1, Win_2, Win_3, Win_4, Win_5, Win_6, Out
+    }
 }

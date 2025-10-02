@@ -10,22 +10,20 @@ namespace OneCard
     partial class PlayManager
     {
         LinkedList<AbsPlayer> players; //플레이어 정보
-        CardDeck cardDeck;
-        static CardDeck usedDeck;
-
+        static CardDeck cardDeck;
+        //static CardDeck usedDeck;
+        //플레이어가 우승 할 때 마다 Win을 뽑아 갈수 있게
+        static Queue<PlayerStatus> PlayerWinsQueue = new Queue<PlayerStatus>();
         public static Card ThrowCard
         { set
-            { usedDeck.AddCard(value); }
+            { cardDeck.UsedOneCard = value; }
         }
-        public static List<Card> RefillCardList
-        {
-            get { return usedDeck.EmptyCard(); }
-        }
+
         public int AutoPlayerNum { get; set; }
         public PlayManager()
         {
             cardDeck = new CardDeck();
-            usedDeck = new CardDeck();
+
             players = new LinkedList<AbsPlayer>();
             players.AddFirst(new Player(cardDeck.Draw(7),"Its Me")); //기본 7장 드로우
 
@@ -33,17 +31,28 @@ namespace OneCard
             for(int i =0;i<AutoPlayerNum;i++)
             {
                 players.AddFirst(new AutoPlayer(cardDeck.Draw(7),$"Auto_{i+1}"));
+                PlayerWinsQueue.Enqueue((PlayerStatus)(i + 1));
             }
+
             
         }
 
         /// <summary>
         /// 게임이 끝났는지 플레이어 덱을 보고 체크
         /// </summary>
-        /// <returns>True면 게임 속행 False면 게임 종료</returns>
-        public bool CheckGameEnd()
+        /// <returns></returns>
+        public void CheckGameEnd(LinkedListNode<AbsPlayer> player)
         {
-            return true;
+            if (player.Value.PlayerCardNum > 20)
+            {
+                player.Value.SetStatus(PlayerStatus.Out);
+                player.Value.DisplayNotice(player.Value.PlayerName + "는 탈락했습니다.");
+                //players.Remove(player);
+            }
+            else if (player.Value.PlayerCardNum == 0)
+            {
+
+            }
         }
 
         public void GamePlay()
@@ -51,17 +60,26 @@ namespace OneCard
             var turn = players.Last;
             while (true)
             {
-                if (turn.Value.MyTurn())
+                PlayingDisplay.DisplayBackground();
+                PlayingDisplay.DisplayAllPlayerRemainingCard(players);
+                if(turn.Value.Status == PlayerStatus.Playing)
                 {
-                    CheckSpecialCard();
+                    //플레이 가능 할 때만 실행
+                    if (turn.Value.MyTurn())
+                    {
+                        //카드를 냈을 때
+                        CheckSpecialCard();
+                        turn.Value.DisplayNotice();
+                    }
+                    else
+                    {
+                        //카드를 못냈을 때
+                        turn.Value.DisplayNotice(turn.Value.PlayerName + "가 카드를 뽑습니다.");
+                    }
+                    //Thread.Sleep(2000);
                 }
-                else
-                {
-
-                }
-                turn.Value.DisplayRemainingCard();
+                CheckGameEnd(turn);
                 //순환 구조용 확장 메서드
-                Thread.Sleep(2000);
                 turn = players.CycleNext(turn);
             }
         }

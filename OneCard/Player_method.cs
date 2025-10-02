@@ -32,6 +32,7 @@ namespace OneCard
             }
             PlayingDisplay.SetEnableCardIndex(enableCardIndex);
             PlayingDisplay.DisplayPlaying(cards);
+
             int selectedCardIndex;
 
             if (DrawOrUseCard(enableCardIndex,out selectedCardIndex))
@@ -44,11 +45,15 @@ namespace OneCard
                 {
                     NormalDrawCard();
                 }
+                //사용 후 갱신
+                PlayingDisplay.DisplayPlaying(cards);
                 return false;
             }
             else
             {
                 UseCard(selectedCardIndex, enableCardIndex);
+                //사용후 갱신
+                PlayingDisplay.DisplayPlaying(cards);
                 return true;
             }
 

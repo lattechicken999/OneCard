@@ -27,12 +27,15 @@ namespace OneCard
             }    
             return false;
         }
-
-        //플레이 화면 출력
-        public static void DisplayPlaying(List<Card> userCards)
+        public static void DisplayBackground()
         {
             Console.Clear();
             Console.WriteLine(CardArt.backGround);
+        }
+        //플레이 화면 출력
+        public static void DisplayPlaying(List<Card> userCards)
+        {
+            
             DiplayGuide();
             DisplayLastCard();
 
@@ -132,7 +135,7 @@ namespace OneCard
                 default:
                     return;
             }
-            Console.Write(card.Num + "    ");
+            Console.Write(card.Num + "     ");
             Console.ResetColor();
         }
 
@@ -150,16 +153,49 @@ namespace OneCard
             Console.WriteLine("┗         ┛");
         }
 
-        //각 턴 때 표시할 남은 카드 출력
-        public static void DisplayPlayerRemainingCard(int cardNum,string name)
+        //각 턴 넘어갈 때 표시할 남은 카드 출력
+        public static void DisplayPlayerStatucNotice(int cardNum,string name)
         {
-           
+            DisplayLastCard();
             Console.SetCursorPosition(Console.WindowWidth/2 -8, 9);
             Console.WriteLine("================================");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 10);
-            Console.WriteLine($"   {name}님의 남은 카드 개 수 : {cardNum} ");
+            Console.WriteLine("                                                                           ");//사용하려는 줄 비워주기..
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 10);
+            Console.WriteLine($"{name}님의 남은 카드 개 수 : {cardNum} ");
             Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 11);
             Console.WriteLine("================================");
+        }
+
+        public static void DisplayPlayerStatucNotice(string text)
+        {
+            DisplayLastCard();
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 9);
+            Console.WriteLine("================================");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 10);
+            Console.WriteLine("                                                                           ");//사용하려는 줄 비워주기..
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 10);
+            Console.WriteLine($"{text}");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 11);
+            Console.WriteLine("================================");
+        }
+
+        //각 플레이어 남은 카드 상시 디스플레이
+        public static void DisplayAllPlayerRemainingCard(LinkedList<AbsPlayer> players)
+        {
+            Console.SetCursorPosition(0, 10);
+            Console.WriteLine("============");
+            Console.WriteLine("                            ");//사용하려는 줄 비워주기..
+            Console.WriteLine("                            ");//사용하려는 줄 비워주기..
+            Console.WriteLine("                            ");//사용하려는 줄 비워주기..
+            Console.WriteLine("                            ");//사용하려는 줄 비워주기..
+            Console.WriteLine("============");//사용하려는 줄 비워주기..
+            Console.SetCursorPosition(0, 11);
+            foreach(var playerNode in players)
+            {
+                Console.WriteLine(playerNode.PlayerName+" : "+ playerNode.PlayerCardNum);
+            }
+            
         }
     }
 }

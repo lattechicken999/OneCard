@@ -41,11 +41,16 @@ namespace OneCard
                 enableCardIndex = GetEnableCardList();
             }
 
-            if (enableCardIndex.Count > 0)
+            if (enableCardIndex.Count > 1)
             {
-                //선택 할 수 있는 카드가 있다면 랜덤하게 내기
-                var useCard = cards[enableCardIndex[rnd.Next(enableCardIndex.Count)]];
+                //선택 할 수 있는 카드가 여러장 있다면 랜덤하게 내기
+                var useCard = cards[enableCardIndex[rnd.Next(0,enableCardIndex.Count)]];
                 UseCard(useCard);
+                return true;
+            }
+            else if(enableCardIndex.Count == 1)
+            {
+                UseCard(cards[enableCardIndex[0]]);
                 return true;
             }
             else
