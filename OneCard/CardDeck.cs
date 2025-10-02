@@ -44,6 +44,32 @@ namespace OneCard
                 cards[i] = temp;
             }
         }
+        public List<Card> SuffleDeck(List<Card> cardList)
+        {
+            Random rnd = new Random();
+            for (int i = cardList.Count - 1; i > 0; i--)
+            {
+                int rndIndex = rnd.Next(0, i + 1);
+                var temp = cardList[rndIndex];
+                cardList[rndIndex] = cardList[i];
+                cardList[i] = temp;
+            }
+            return cardList;
+        }
 
+        public void AddCard(Card card)
+        {
+            cards.Add(card);
+        }
+        public void AddCard(List<Card> cards)
+        {
+            cards.AddRange(cards);
+        }
+        public List<Card> EmptyCard()
+        {
+            List<Card> list = cards.ToList();
+            cards.Clear();
+            return list;
+        }
     }
 }

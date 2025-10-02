@@ -11,10 +11,21 @@ namespace OneCard
     {
         LinkedList<AbsPlayer> players; //플레이어 정보
         CardDeck cardDeck;
+        static CardDeck usedDeck;
+
+        public static Card ThrowCard
+        { set
+            { usedDeck.AddCard(value); }
+        }
+        public static List<Card> RefillCardList
+        {
+            get { return usedDeck.EmptyCard(); }
+        }
         public int AutoPlayerNum { get; set; }
         public PlayManager()
         {
             cardDeck = new CardDeck();
+            usedDeck = new CardDeck();
             players = new LinkedList<AbsPlayer>();
             players.AddFirst(new Player(cardDeck.Draw(7),"Its Me")); //기본 7장 드로우
 
@@ -29,7 +40,7 @@ namespace OneCard
         /// <summary>
         /// 게임이 끝났는지 플레이어 덱을 보고 체크
         /// </summary>
-        /// <returns>True면 게인 속행 False면 게임 종료</returns>
+        /// <returns>True면 게임 속행 False면 게임 종료</returns>
         public bool CheckGameEnd()
         {
             return true;
@@ -42,7 +53,7 @@ namespace OneCard
             {
                 if (turn.Value.MyTurn())
                 {
-                    CheckAttackCard();
+                    CheckSpecialCard();
                 }
                 else
                 {
@@ -65,9 +76,10 @@ namespace OneCard
         //메서드 정의
         
         //마지막 카드의 공격카드 판단 및 처리
-        private void CheckAttackCard()
+        private void CheckSpecialCard()
         {
             Card lastCard = AbsPlayer.LastCard;
+            //공격 카드일 때 처리
             if (lastCard.Num == CardNum._2 && lastCard.Pattern != CardPattern.None)
             {
                 AbsPlayer.TakePenaltyCard += cardDeck.Draw_Attact2;
@@ -88,6 +100,7 @@ namespace OneCard
             {
                 AbsPlayer.TakePenaltyCard += cardDeck.Draw_AttactColorJocker;
             }
+            // 특수카드 일 때 처리
         }
     }
 }

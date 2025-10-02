@@ -19,5 +19,9 @@ namespace OneCard
             Pattern = patten;
             Num = num;
         }
+        public Card DeepCopy()
+        {
+            return new Card(Pattern, Num);
+        }
     }
 }

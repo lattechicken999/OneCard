@@ -17,7 +17,8 @@ namespace OneCard
         {
             if (enableCards.Contains(useCardIndex))
             {
-                lastCard = cards[useCardIndex];
+                lastCard = cards[useCardIndex].DeepCopy();
+                PlayManager.ThrowCard = cards[useCardIndex];
                 cards.RemoveAt(useCardIndex);
             }
         }
@@ -29,7 +30,8 @@ namespace OneCard
         /// <param name="enableCards"></param>
         protected void UseCard(Card usingCard)
         {
-            lastCard = usingCard;
+            lastCard = usingCard.DeepCopy();
+            PlayManager.ThrowCard = usingCard;
             cards.Remove(usingCard);
         }
 
