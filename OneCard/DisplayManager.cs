@@ -42,12 +42,16 @@ namespace OneCard
             if (DispSelectW<0) { DispSelectW = 0; }
 
             Console.SetCursorPosition(DispCardW, DispSelectH - 8);
+            Console.WriteLine("                                                       ");//쓰기전 지우기
+            Console.SetCursorPosition(DispCardW, DispSelectH - 8);
 
-            for(int i=0;i<userCards.Count; i++)
+            for (int i=0;i<userCards.Count; i++)
             {
                 if(i%5 == 0)
                 {
-                    Console.SetCursorPosition(DispCardW, DispSelectH - 8+i/5);
+                    Console.SetCursorPosition(DispCardW, DispSelectH - 8 + i/5);
+                    Console.WriteLine("                                                       ");//쓰기전 지우기
+                    Console.SetCursorPosition(DispCardW, DispSelectH - 8 + i / 5);
                     //5개마다 1줄 추가
                 }
                 Console.Write($"  {i}.");
@@ -66,12 +70,16 @@ namespace OneCard
         {
 
             Console.SetCursorPosition(DispSelectW, DispSelectH);
+            Console.WriteLine("                                                    ");//쓰기전 지우기
+            Console.SetCursorPosition(DispSelectW, DispSelectH);
 
             for (int i = 0; i < cardCount; i++)
             {
 
                 if (i % 10 == 0)
                 {
+                    Console.SetCursorPosition(DispSelectW, DispSelectH + i / 10);
+                    Console.WriteLine("                                                    ");//쓰기전 지우기
                     Console.SetCursorPosition(DispSelectW, DispSelectH + i / 10);
                     //10개마다 1줄 추가
                 }
