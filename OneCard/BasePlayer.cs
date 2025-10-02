@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-     abstract partial class AbsPlayer
+     abstract partial class BasePlayer
     {
         protected List<Card> cards;
         protected PlayerStatus status = PlayerStatus.Playing;
         public string PlayerName
         { get; set; }
         public PlayerStatus Status 
-        { get; }
+        { get
+            { return status; }
+        }
         //모든 플레이어는 마지막 카드 공유
         protected static Card lastCard = new Card();
 

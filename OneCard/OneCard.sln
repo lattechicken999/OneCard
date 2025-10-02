@@ -14,9 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Card", "Card", "{C8D5274F-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Player", "Player", "{A375CCDE-B1B6-4992-A559-83F71D74BABB}"
 	ProjectSection(SolutionItems) = preProject
-		Abstract_Player.cs = Abstract_Player.cs
-		Abstract_Player_Method.cs = Abstract_Player_Method.cs
 		AutoPlayer.cs = AutoPlayer.cs
+		BasePlayer.cs = BasePlayer.cs
+		Base_Player_Method.cs = Base_Player_Method.cs
+		Base_Player_OneCard.cs = Base_Player_OneCard.cs
 		Player.cs = Player.cs
 		player_method.cs = player_method.cs
 	EndProjectSection
@@ -35,10 +36,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{C933
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{D6A260DD-7438-4547-ADA1-49B37A9602CB}"
 	ProjectSection(SolutionItems) = preProject
-		CardACIIArt.cs = CardACIIArt.cs
+		ACIIArt.cs = ACIIArt.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extension_Method", "Extension_Method", "{14D4BFD3-AA51-4ACA-A2B9-E8F52B4B4E9F}"
+	ProjectSection(SolutionItems) = preProject
+		ex_LinkedList.cs = ex_LinkedList.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,6 +8,14 @@ namespace OneCard
 {
     public static class CardArt
     {
+        public static string gameEnd = @"
+  ###                          ####  #  #  ###  
+ #      ###  #  #   ##         #     ## #  #  # 
+ # ##  #  #  ####  ####        ###   # ##  #  # 
+ #  #  # ##  #  #  #           #     #  #  #  # 
+  ###   # #  #  #   ##         ####  #  #  ###  
+                                                
+";
         public static string backGround = @"
 
                                                                                 

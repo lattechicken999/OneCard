@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-    partial class Player:AbsPlayer
+    partial class Player : BasePlayer
     {
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace OneCard
 
             int selectedCardIndex;
 
-            if (DrawOrUseCard(enableCardIndex,out selectedCardIndex))
+            if (DrawOrUseCard(enableCardIndex, out selectedCardIndex))
             {
                 if (attFlag)
                 {
@@ -59,6 +59,22 @@ namespace OneCard
 
         }
 
+        public override void WaitEnterInput()
+        {
+            while (true)
+            {
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    if (oneCardInterceptPlayerName == "")
+                    {
+                        oneCardInterceptPlayerName = this.PlayerName;
+
+                    }
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// 사용자의 카드 선택 기능
         /// </summary>
@@ -75,7 +91,7 @@ namespace OneCard
             while (isSelection)
             {
                 //카드 선택창 출력
-                if(enableCardIndex.Count>0)
+                if (enableCardIndex.Count > 0)
                 {
                     PlayingDisplay.DisplayUserSelection(cards.Count, enableCardIndex[selectIndex]);
                 }
@@ -90,13 +106,13 @@ namespace OneCard
                 {
                     //키 입력시에만 디스플레이 갱신
                     case ConsoleKey.LeftArrow:
-                        selectIndex = (selectIndex > 0)? selectIndex - 1 : 0;
+                        selectIndex = (selectIndex > 0) ? selectIndex - 1 : 0;
                         break;
                     case ConsoleKey.RightArrow:
-                        selectIndex = (selectIndex < enableCardIndex.Count-1)? selectIndex + 1 : selectIndex;
+                        selectIndex = (selectIndex < enableCardIndex.Count - 1) ? selectIndex + 1 : selectIndex;
                         break;
                     case ConsoleKey.Enter:
-                        if(enableCardIndex.Count == 0)
+                        if (enableCardIndex.Count == 0)
                         {
                             //선택할게 없으면 무시함ㅇ
                             break;

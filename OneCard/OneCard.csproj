@@ -43,11 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract_Player.cs" />
-    <Compile Include="Abstract_Player_Method.cs" />
+    <Compile Include="BasePlayer.cs" />
+    <Compile Include="Base_Player_Method.cs" />
     <Compile Include="AutoPlayer.cs" />
+    <Compile Include="Base_Player_OneCard.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="CardACIIArt.cs" />
+    <Compile Include="ACIIArt.cs" />
     <Compile Include="CardDeck.cs" />
     <Compile Include="CardDeck_DrawMethod.cs" />
     <Compile Include="DisplayManager.cs" />

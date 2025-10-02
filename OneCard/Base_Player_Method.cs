@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneCard
 {
-    abstract partial class AbsPlayer
+    abstract partial class BasePlayer
     {
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace OneCard
             }
             TakePenaltyCard = null;
         }
-        protected void NormalDrawCard()
+        public void NormalDrawCard()
         {
             cards.Add(TakeCard.Invoke());
         }
@@ -153,6 +153,18 @@ namespace OneCard
         public void SetStatus(PlayerStatus newStatus)
         {
             status = newStatus;
+        }
+
+        /// <summary>
+        /// 플레이어 탈락 시 카드 덱 반납하는 함수 
+        /// </summary>
+        /// <returns></returns>
+        public List<Card> ReturnCardDeck()
+        {
+            //리스트의 깊은복사 (요소는 깊복 안함)
+            List<Card> returnList = cards.ToList();
+            cards.Clear();
+            return returnList;
         }
     }
 }

@@ -18,4 +18,5 @@ namespace OneCard
     {
         Playing, Win_1, Win_2, Win_3, Win_4, Win_5, Win_6, Out
     }
+
 }

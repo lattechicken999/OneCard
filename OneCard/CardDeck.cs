@@ -32,7 +32,7 @@ namespace OneCard
             usedCards = new List<Card>();
 
             // 한장 뽑기 기능 저장
-            AbsPlayer.TakeCard += Draw;
+            BasePlayer.TakeCard += Draw;
 
             for (int i = 0; i < 52; i++)
             {
@@ -49,6 +49,9 @@ namespace OneCard
 
             SuffleDeck();
         }
+        /// <summary>
+        /// 내 카드 덱 셔플
+        /// </summary>
         public void SuffleDeck()
         {
             Random rnd = new Random();
@@ -60,7 +63,30 @@ namespace OneCard
                 cards[i] = temp;
             }
         }
-        public List<Card> SuffleDeck(List<Card> cardList)
+        /// <summary>
+        /// 내부 사용 용도의 셔플 함수
+        /// </summary>
+        /// <param name="cardList"></param>
+        /// <returns></returns>
+        private List<Card> SuffleDeck(List<Card> cardList)
+        {
+            Random rnd = new Random();
+            List<Card> returnList = cardList.ToList();
+            for (int i = returnList.Count - 1; i > 0; i--)
+            {
+                int rndIndex = rnd.Next(0, i + 1);
+                var temp = returnList[rndIndex];
+                returnList[rndIndex] = returnList[i];
+                returnList[i] = temp;
+            }
+            return returnList;
+        }
+
+        /// <summary>
+        /// 추가할 카드 리스트를 셔플 하고나서 추가 
+        /// </summary>
+        /// <param name="cardList">추가할 카드 리스트</param>
+        public void AddSuffleDeck(List<Card> cardList)
         {
             Random rnd = new Random();
             for (int i = cardList.Count - 1; i > 0; i--)
@@ -70,16 +96,16 @@ namespace OneCard
                 cardList[rndIndex] = cardList[i];
                 cardList[i] = temp;
             }
-            return cardList;
+            cards.AddRange( cardList);
         }
 
         public void AddCard(Card card)
         {
             cards.Add(card);
         }
-        public void AddCard(List<Card> cards)
+        public void AddCard(List<Card> newCards)
         {
-            cards.AddRange(cards);
+            cards.AddRange(newCards);
         }
 
         /// <summary>

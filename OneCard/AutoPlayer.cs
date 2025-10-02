@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OneCard
 {
-    class AutoPlayer : AbsPlayer
+    class AutoPlayer : BasePlayer
     {
         
         
@@ -67,6 +68,17 @@ namespace OneCard
                     NormalDrawCard();
                 }
                 return false;
+            }
+        }
+
+        public override void WaitEnterInput()
+        {
+            Random rnd = new Random();
+            //1~2초 사이 랜덤으로 쉽
+            Thread.Sleep(rnd.Next(1000, 2000));
+            if(oneCardInterceptPlayerName == "")
+            {
+                oneCardInterceptPlayerName = this.PlayerName;
             }
         }
     }

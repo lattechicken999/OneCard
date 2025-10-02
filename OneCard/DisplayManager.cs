@@ -181,7 +181,7 @@ namespace OneCard
         }
 
         //각 플레이어 남은 카드 상시 디스플레이
-        public static void DisplayAllPlayerRemainingCard(LinkedList<AbsPlayer> players)
+        public static void DisplayAllPlayerRemainingCard(LinkedList<BasePlayer> players)
         {
             Console.SetCursorPosition(0, 10);
             Console.WriteLine("============");
@@ -193,9 +193,37 @@ namespace OneCard
             Console.SetCursorPosition(0, 11);
             foreach(var playerNode in players)
             {
-                Console.WriteLine(playerNode.PlayerName+" : "+ playerNode.PlayerCardNum);
+                if (playerNode.Status == PlayerStatus.Playing)
+                { 
+                    Console.WriteLine(playerNode.PlayerName + " : " + playerNode.PlayerCardNum); 
+                }
+                else
+                {
+                    Console.WriteLine(playerNode.PlayerName + " : " + playerNode.Status);
+                }
             }
             
         }
+
+        public static void DisplayTurnInfo(string text)
+        {
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 5);
+            Console.WriteLine("================================");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 6);
+            Console.WriteLine("                                                                           ");//사용하려는 줄 비워주기..
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 7);
+            Console.WriteLine($"{text}");
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 8, 8);
+            Console.WriteLine("================================");
+        }
+
+        public static void DisplayGameEnd(LinkedList<BasePlayer> players)
+        {
+            Console.Clear();
+            Console.WriteLine(CardArt.gameEnd);
+            DisplayAllPlayerRemainingCard(players);
+        }
+
+       
     }
 }

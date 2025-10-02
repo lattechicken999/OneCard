@@ -8,7 +8,7 @@ namespace OneCard
 {
     //Player 필수 기능 구상
 
-    partial class Player: AbsPlayer
+    partial class Player: BasePlayer
     {
         public Player()
         {

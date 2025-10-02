@@ -47,38 +47,74 @@ namespace OneCard
         public List<Card> Draw_AttactA()
         {
             const int num = 3;
+            List<Card> returnCard;
             if (cards.Count < num)
             { cards.AddRange(RefillCard()); }
-            List<Card> returnCard = cards.GetRange(0, num);
-            cards.RemoveRange(0, num);
+            if(cards.Count < num)
+            {
+                returnCard  = cards.ToList();
+                cards.Clear();
+            }
+            else
+            {
+                returnCard = cards.GetRange(0, num);
+                cards.RemoveRange(0, num);
+            }
             return returnCard;
         }
 
         public List<Card> Draw_AttactSpadeA()
         {
             const int num = 5;
+            List<Card> returnCard;
             if (cards.Count < num)
             { cards.AddRange(RefillCard()); }
-            List<Card> returnCard = cards.GetRange(0, num);
-            cards.RemoveRange(0, num);
+            if (cards.Count < num)
+            {
+                returnCard = cards.ToList();
+                cards.Clear();
+            }
+            else
+            {
+                returnCard = cards.GetRange(0, num);
+                cards.RemoveRange(0, num);
+            }
             return returnCard;
         }
         public List<Card> Draw_AttactBlackJocker()
         {
             const int num = 5;
+            List<Card> returnCard;
             if (cards.Count < num)
             { cards.AddRange(RefillCard()); }
-            List<Card> returnCard = cards.GetRange(0, num);
-            cards.RemoveRange(0, num);
+            if (cards.Count < num)
+            {
+                returnCard = cards.ToList();
+                cards.Clear();
+            }
+            else
+            {
+                returnCard = cards.GetRange(0, num);
+                cards.RemoveRange(0, num);
+            }
             return returnCard;
         }
         public List<Card> Draw_AttactColorJocker()
         {
             const int num = 7;
+            List<Card> returnCard;
             if (cards.Count < num)
             { cards.AddRange(RefillCard()); }
-            List<Card> returnCard = cards.GetRange(0, num);
-            cards.RemoveRange(0, num);
+            if (cards.Count < num)
+            {
+                returnCard = cards.ToList();
+                cards.Clear();
+            }
+            else
+            {
+                returnCard = cards.GetRange(0, num);
+                cards.RemoveRange(0, num);
+            }
             return returnCard;
         }
     }

@@ -11,6 +11,7 @@ namespace OneCard
     {
         public void DisplayMainMenu()
         {
+            Console.Clear();
             Console.WriteLine("원카드 게임");
             Console.WriteLine("1. 게임 플레이");
             Console.WriteLine("2. 게임 종료");
@@ -22,8 +23,7 @@ namespace OneCard
             switch (userKey.Key)
             {
                 case ConsoleKey.D1:
-                    StartPlayGame();
-                    break;
+                    return StartPlayGame();
                 case ConsoleKey.D2:
                     return StopPlayGame();
                 default:
@@ -32,11 +32,11 @@ namespace OneCard
             }
             return true;
         }
-        private void StartPlayGame()
+        private bool StartPlayGame()
         {
             PlayManager playManager = new PlayManager();
 
-            playManager.GamePlay();
+            return playManager.GamePlay();
 
         }
         private bool StopPlayGame() 
