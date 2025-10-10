@@ -82,10 +82,6 @@ namespace OneCard
                 {
                     lastCard.Pattern = CardPattern.Spade;
                 }
-                else if(key.Key == ConsoleKey.Enter)
-                {
-                    break;
-                }
             }
         }
 
