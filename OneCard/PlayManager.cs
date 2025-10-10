@@ -101,7 +101,7 @@ namespace OneCard
                     CheckPlayable(turn);
                     Thread.Sleep(2000);
                 }
-                if (CheckPlayableUserCount(players) == 0  )
+                if (CheckPlayableUserCount(players) <= 1  )
                 {
                     //승리자를 모두 가려냈다면 종료
                     PlayingDisplay.DisplayGameEnd(players);
