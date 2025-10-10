@@ -46,12 +46,12 @@ namespace OneCard
             for (int i = 0; i < cards.Count; i++)
             {
                 //마지막 카드가 비어 있다면(초기 값이라면), 혹은 조커카드라면 모든 카드 가능
-                if (lastCard.Num == CardNum._Jocker || (lastCard.Pattern == CardPattern.None && lastCard.Num == CardNum.None))
+                if (lastCard.Num == CardNum._Joker || (lastCard.Pattern == CardPattern.None && lastCard.Num == CardNum.None))
                 {
                     enableIndex.Add(i);
                 }
                 //조커카드는 언제나 가능
-                else if (cards[i].Num == CardNum._Jocker)
+                else if (cards[i].Num == CardNum._Joker)
                 {
                     enableIndex.Add(i);
                 }
@@ -79,7 +79,7 @@ namespace OneCard
                 if (lastCard.Num == CardNum._2 &&
                     (cards[i].Num == CardNum._2 ||
                      cards[i].Num == CardNum._A ||
-                     cards[i].Num == CardNum._Jocker))
+                     cards[i].Num == CardNum._Joker))
 
                 {
                     enableIndex.Add(i);
@@ -87,19 +87,19 @@ namespace OneCard
                 //카드가 A(스페이드 제외) 라면 A와 조커 가능
                 else if ((lastCard.Num == CardNum._A && lastCard.Pattern != CardPattern.Spade) &&
                          (cards[i].Num == CardNum._A ||
-                          cards[i].Num == CardNum._Jocker))
+                          cards[i].Num == CardNum._Joker))
                 {
                     enableIndex.Add(i);
                 }
                 //카드가 스페이드 A라면 초커만 가능
                 else if ((lastCard.Num == CardNum._A && lastCard.Pattern == CardPattern.Spade) &&
-                         (cards[i].Num == CardNum._Jocker))
+                         (cards[i].Num == CardNum._Joker))
                 {
                     enableIndex.Add(i);
                 }
                 //카드가 블랙 조커라면 컬러조커만 가능(그치만 블랙카드가 나왔다면 컬러조커밖에 없을 것)
-                else if ((lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Black) &&
-                           (cards[i].Num == CardNum._Jocker))
+                else if ((lastCard.Num == CardNum._Joker && lastCard.Pattern == CardPattern.Black) &&
+                           (cards[i].Num == CardNum._Joker))
                 {
                     enableIndex.Add(i);
                 }
@@ -118,7 +118,7 @@ namespace OneCard
             if (lastCard.Pattern != CardPattern.None && TakePenaltyCard != null &&
                (lastCard.Num == CardNum._2 ||
                 lastCard.Num == CardNum._A ||
-                lastCard.Num == CardNum._Jocker))
+                lastCard.Num == CardNum._Joker))
             {
                 return true;
             }

@@ -40,11 +40,11 @@ namespace OneCard
             }
 
             //흑백 조커 추가
-            Card newBlackJocker = new Card(CardPattern.Black, CardNum._Jocker);
+            Card newBlackJocker = new Card(CardPattern.Black, CardNum._Joker);
             cards.Add(newBlackJocker);
 
             //컬러 조커 추가
-            Card newCard = new Card(CardPattern.Color, CardNum._Jocker);
+            Card newCard = new Card(CardPattern.Color, CardNum._Joker);
             cards.Add(newCard);
 
             SuffleDeck();

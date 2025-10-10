@@ -187,11 +187,11 @@ namespace OneCard
             {
                 BasePlayer.TakePenaltyCard += cardDeck.Draw_AttactSpadeA;
             }
-            else if(lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Black)
+            else if(lastCard.Num == CardNum._Joker && lastCard.Pattern == CardPattern.Black)
             {
                 BasePlayer.TakePenaltyCard += cardDeck.Draw_AttactBlackJocker;
             }
-            else if (lastCard.Num == CardNum._Jocker && lastCard.Pattern == CardPattern.Color)
+            else if (lastCard.Num == CardNum._Joker && lastCard.Pattern == CardPattern.Color)
             {
                 BasePlayer.TakePenaltyCard += cardDeck.Draw_AttactColorJocker;
             }
